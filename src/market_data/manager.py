@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 
 
-class MarkerDataManager:
+class MarketDataManager:
     """Singleton class to process all API data calls."""
     _instance = None
 
@@ -27,11 +27,16 @@ class MarkerDataManager:
 
         self._initialized = True
 
-    def fetch_data_daily(self, equity: str) -> None:
+    def fetch_data_daily(self, equity: str) -> dict:
+        """Fetch daily data for given equity symbol."""
+        if not equity:
+            raise ValueError('Equity symbol cannot be empty')
+
         parameters = {
             "function": "TIME_SERIES_DAILY",
-            "symbol": equity,
+            "symbol": equity.upper(),
             "apikey": self.api_key
         }
+
         response = httpx.get(url=self.base_url, params=parameters)
         return response.json()
