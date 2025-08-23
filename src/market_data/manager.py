@@ -38,5 +38,11 @@ class MarketDataManager:
             "apikey": self.api_key
         }
 
-        response = httpx.get(url=self.base_url, params=parameters)
-        return response.json()
+        try:
+            response = httpx.get(url=self.base_url, params=parameters)
+            response.raise_for_status()
+            return response.json()
+        except httpx.RequestError as exc:
+            raise ConnectionError(f'Failed to fetch data for {equity}: {exc}')
+        except httpx.HTTPStatusError as exc:
+            raise ConnectionError(f'HTTP status error {exc.response.status_code} for {equity}: {exc}')
