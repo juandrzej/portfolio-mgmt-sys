@@ -14,8 +14,12 @@ def test_empty_none_fetch(param):
     manager = MarketDataManager()
     with pytest.raises(ValueError):
         manager.fetch_data_daily(param)
-        
+
 def test_base_url():
     MarketDataManager._instance = None
     manager = MarketDataManager()
     assert manager.base_url == 'https://www.alphavantage.co/query'
+
+def test_api_key():
+    pass
+
