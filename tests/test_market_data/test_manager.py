@@ -28,4 +28,18 @@ class TestMarketDataManager:
         assert manager.api_key is not None
         assert len(manager.api_key) > 0
 
+    def test_set_env(self, monkeypatch):
+        monkeypatch.setenv('ALPHA_VANTAGE_API_KEY', 'fake_key')
+        manager = MarketDataManager()
+        assert manager.api_key == 'fake_key'
+
+    # @pytest.mark.skip
+    def test_del_env(self, monkeypatch):
+        # To ensure load_dotenv doesn't reload the api key
+        monkeypatch.setattr('market_data.manager.load_dotenv', lambda: None)
+        # Deleting the actual key, it is leftover from other tests
+        monkeypatch.delenv('ALPHA_VANTAGE_API_KEY')
+
+        with pytest.raises(ValueError):
+            MarketDataManager()
 
