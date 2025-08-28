@@ -43,3 +43,14 @@ class TestMarketDataManager:
         with pytest.raises(ValueError):
             MarketDataManager()
 
+    def test_fetch_data_success(self, monkeypatch, mocker):
+        monkeypatch.setenv('ALPHA_VANTAGE_API_KEY', 'fake_key')
+
+        mock_response = mocker.Mock()
+        mock_response.json.return_value = {'Time Series (Daily)': {'2024-01-01': {'close': '150'}}}
+        mock_response.raise_for_status.return_value = None
+        mocker.patch('httpx.get', return_value=mock_response)
+
+        manager = MarketDataManager()
+        result = manager.fetch_data_daily('AAPL')
+        assert 'Time Series (Daily)' in result
