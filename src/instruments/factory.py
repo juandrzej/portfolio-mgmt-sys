@@ -9,7 +9,6 @@ class InstrumentType(Enum):
     CURRENCY = "currency"                # Forex spot pairs. For FX derivatives, prefer DERIVATIVE.
     VOLATILITY = "volatility"            # VIX, volatility swaps, variance swaps. Direct vol exposure.
     DERIVATIVE = "derivative"            # Options, futures, swaps on any underlying. Use when the derivative nature is the key characteristic.
-    MACRO = "macro"                      # Broad category for instruments in a macro portfolio (often a blend of the above).
     ALTERNATIVE = "alternative"          # Real estate, infrastructure, private equity, illiquid assets.
     CASH = "cash"                        # Cash deposits, money market funds, repos.
 
