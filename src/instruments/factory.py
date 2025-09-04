@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
-from enum import Enum, auto
+from enum import StrEnum, auto
 
-class InstrumentType(Enum):
+class InstrumentType(StrEnum):
     """Starting simple for now, we'll get deeper later."""
     # Core
     EQUITY_LONG = auto()
