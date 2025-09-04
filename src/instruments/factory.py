@@ -1,16 +1,17 @@
-from enum import Enum
+from enum import Enum, auto
 
 class InstrumentType(Enum):
-    """Initial instruments types listing, still researching these."""
-    EQUITY = "equity"                    # Stocks, ETFs, equity indices. Use for cash equities.
-    FIXED_INCOME = "fixed_income"        # Rates & Gov Bonds. Primary risk is interest rates.
-    CREDIT = "credit"                    # Corporate bonds, CDS, loans. Primary risk is credit spread/default.
-    COMMODITY = "commodity"              # Physical commodities (Oil, Gold, Corn) and their cash-settled futures.
-    CURRENCY = "currency"                # Forex spot pairs. For FX derivatives, prefer DERIVATIVE.
-    VOLATILITY = "volatility"            # VIX, volatility swaps, variance swaps. Direct vol exposure.
-    DERIVATIVE = "derivative"            # Options, futures, swaps on any underlying. Use when the derivative nature is the key characteristic.
-    ALTERNATIVE = "alternative"          # Real estate, infrastructure, private equity, illiquid assets.
-    CASH = "cash"                        # Cash deposits, money market funds, repos.
+    """Starting simple for now, we'll get deeper later."""
+    # Core
+    EQUITY_LONG = auto()
+    EQUITY_SHORT = auto()
+    BOND = auto()
+    # Derivatives
+    OPTION = auto()
+    FUTURE = auto()
+    # Other
+    CURRENCY = auto()
+    CASH = auto()
 
 
 class InstrumentFactory:
