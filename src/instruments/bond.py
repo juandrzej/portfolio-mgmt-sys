@@ -1,7 +1,7 @@
 from base import FinancialInstrument
 
 class Bond(FinancialInstrument):
-    def __init__(self, symbol: str, price: float, quantity: int, coupon_rate, maturity):
+    def __init__(self, symbol: str, price: float, quantity: int, coupon_rate: float, maturity: str):
         super().__init__(symbol, price, quantity)
         self.coupon_rate = coupon_rate
         self.maturity = maturity
