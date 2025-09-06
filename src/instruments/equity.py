@@ -11,6 +11,7 @@ class Equity(FinancialInstrument):
         return self.price * self.quantity
 
     def get_risk_metrics(self) -> dict:
+        """Not implemented yet."""
         return {}
 
     def get_volatility(self) -> float:

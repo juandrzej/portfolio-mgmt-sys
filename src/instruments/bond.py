@@ -25,6 +25,6 @@ class Bond(FinancialInstrument):
             "D": 0.40
         }
 
-        #TODO:add duration to calcs (counted from maturity date)
+        #TODO: add duration to calcs (counted from maturity date)
         return rating_volatility[self._credit_rating]
 
