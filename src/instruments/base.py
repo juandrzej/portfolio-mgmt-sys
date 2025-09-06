@@ -28,4 +28,8 @@ class FinancialInstrument(ABC):
     def get_risk_metrics(self) -> dict:
         pass
 
+    @abstractmethod
+    def get_volatility(self) -> float:
+        pass
+
 
