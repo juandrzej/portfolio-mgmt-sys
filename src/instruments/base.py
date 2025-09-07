@@ -20,6 +20,13 @@ class FinancialInstrument(ABC):
         self.price = price
         self.quantity = quantity
 
+        if not symbol or symbol.strip() == "":
+            raise ValueError("Symbol cannot be empty")
+        if price <= 0:
+            raise ValueError("Price must be positive")
+        if quantity <= 0:
+            raise ValueError("Quantity must be positive")
+
     @abstractmethod
     def calculate_value(self) -> float:
         pass
