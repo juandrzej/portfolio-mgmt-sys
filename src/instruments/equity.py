@@ -1,4 +1,4 @@
-from base import FinancialInstrument
+from instruments.base import FinancialInstrument
 
 class Equity(FinancialInstrument):
     def __init__(self, symbol: str, price: float, quantity: int, beta: float = 1.0, sector: str = "", dividend: int = 0):

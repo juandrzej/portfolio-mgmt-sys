@@ -1,4 +1,4 @@
-from base import FinancialInstrument
+from instruments.base import FinancialInstrument
 
 class Bond(FinancialInstrument):
     def __init__(self, symbol: str, price: float, quantity: int, coupon_rate: float, maturity: str, credit_rating: str = "AAA"):
@@ -11,6 +11,7 @@ class Bond(FinancialInstrument):
         return self.price * self.quantity * (self._coupon_rate + 1)
 
     def get_risk_metrics(self) -> dict:
+        """Not implemented yet."""
         return {}
 
     def get_volatility(self) -> float:
