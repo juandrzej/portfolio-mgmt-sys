@@ -22,7 +22,7 @@ class TestEquity:
 
 
     @pytest.mark.parametrize(
-        'symbol,price,quantity',
+        "symbol,price,quantity",
         [
             ("", 10.0, 10),
             ("AAPL", -10.0, 10),

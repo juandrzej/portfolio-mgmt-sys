@@ -20,17 +20,17 @@ class MarketDataManager:
 
         # Load environment variables, declare static data and validate api key
         load_dotenv()
-        self.api_key = os.getenv('ALPHA_VANTAGE_API_KEY')
-        self.base_url = 'https://www.alphavantage.co/query'
+        self.api_key = os.getenv("ALPHA_VANTAGE_API_KEY")
+        self.base_url = "https://www.alphavantage.co/query"
         if not self.api_key:
-            raise ValueError('Alpha Vantage api key failed to load from .env')
+            raise ValueError("Alpha Vantage api key failed to load from .env")
 
         self._initialized = True
 
     def fetch_data_daily(self, equity: str) -> dict:
         """Fetch daily data for given equity symbol."""
         if not equity:
-            raise ValueError('Equity symbol cannot be empty')
+            raise ValueError("Equity symbol cannot be empty")
 
         parameters = {
             "function": "TIME_SERIES_DAILY",
@@ -43,6 +43,6 @@ class MarketDataManager:
             response.raise_for_status()
             return response.json()
         except httpx.RequestError as exc:
-            raise ConnectionError(f'Failed to fetch data for {equity}: {exc}')
+            raise ConnectionError(f"Failed to fetch data for {equity}: {exc}")
         except httpx.HTTPStatusError as exc:
-            raise ConnectionError(f'HTTP status error {exc.response.status_code} for {equity}: {exc}')
+            raise ConnectionError(f"HTTP status error {exc.response.status_code} for {equity}: {exc}")

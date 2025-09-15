@@ -13,7 +13,7 @@ class TestMarketDataManager:
         manager2 = MarketDataManager()
         assert manager1 is manager2
 
-    @pytest.mark.parametrize('param', ['', None])
+    @pytest.mark.parametrize("param", ["", None])
     def test_empty_none_fetch(self, param):
         manager = MarketDataManager()
         with pytest.raises(ValueError):
@@ -21,7 +21,7 @@ class TestMarketDataManager:
 
     def test_base_url(self):
         manager = MarketDataManager()
-        assert manager.base_url == 'https://www.alphavantage.co/query'
+        assert manager.base_url == "https://www.alphavantage.co/query"
 
     def test_api_key(self):
         manager = MarketDataManager()
@@ -29,28 +29,28 @@ class TestMarketDataManager:
         assert len(manager.api_key) > 0
 
     def test_set_env(self, monkeypatch):
-        monkeypatch.setenv('ALPHA_VANTAGE_API_KEY', 'fake_key')
+        monkeypatch.setenv("ALPHA_VANTAGE_API_KEY", "fake_key")
         manager = MarketDataManager()
-        assert manager.api_key == 'fake_key'
+        assert manager.api_key == "fake_key"
 
     # @pytest.mark.skip
     def test_del_env(self, monkeypatch):
         # To ensure load_dotenv doesn't reload the api key
-        monkeypatch.setattr('market_data.manager.load_dotenv', lambda: None)
+        monkeypatch.setattr("market_data.manager.load_dotenv", lambda: None)
         # Deleting the actual key, it is leftover from other tests
-        monkeypatch.delenv('ALPHA_VANTAGE_API_KEY')
+        monkeypatch.delenv("ALPHA_VANTAGE_API_KEY")
 
         with pytest.raises(ValueError):
             MarketDataManager()
 
     def test_fetch_data_success(self, monkeypatch, mocker):
-        monkeypatch.setenv('ALPHA_VANTAGE_API_KEY', 'fake_key')
+        monkeypatch.setenv("ALPHA_VANTAGE_API_KEY", "fake_key")
 
         mock_response = mocker.Mock()
-        mock_response.json.return_value = {'Time Series (Daily)': {'2024-01-01': {'close': '150'}}}
+        mock_response.json.return_value = {"Time Series (Daily)": {"2024-01-01": {"close": "150"}}}
         mock_response.raise_for_status.return_value = None
-        mocker.patch('httpx.get', return_value=mock_response)
+        mocker.patch("httpx.get", return_value=mock_response)
 
         manager = MarketDataManager()
-        result = manager.fetch_data_daily('AAPL')
-        assert 'Time Series (Daily)' in result
+        result = manager.fetch_data_daily("AAPL")
+        assert "Time Series (Daily)" in result
