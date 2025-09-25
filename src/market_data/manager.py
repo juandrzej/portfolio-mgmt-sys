@@ -4,7 +4,11 @@ from dotenv import load_dotenv
 
 
 class MarketDataManager:
-    """Singleton class to process all API data calls."""
+    """Singleton that provides real-time market data to entire system"""
+    # TODO:
+    # Manages connections to data sources
+    # Caches prices and market indicators
+    # Handles API rate limits
     _instance = None
 
     def __new__(cls):
