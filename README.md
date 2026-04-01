@@ -2,6 +2,12 @@
 
 Portfolio Risk Management and Rebalancing System that simulates real fund management operations.
 
+## Motivation
+
+## Quick Start
+
+## Usage
+
 ## Project Structure
 
 ```
@@ -34,3 +40,5 @@ portfolio-mgmt-sys/
 └── examples/
     └── fund_management_simulation.py
 ```
+
+## Contributing
